@@ -749,8 +749,12 @@ if(QA){
   st.textContent='html{scroll-behavior:auto}.hero{min-height:740px!important}';
   document.head.appendChild(st);
 }else{
-  const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const revealAll=()=>document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    setTimeout(revealAll, 1500); // safety net: content never stays hidden
+  } else { revealAll(); }
 }
 
 // marquee duplicate for seamless loop

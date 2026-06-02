@@ -149,21 +149,46 @@
   .slide.dark ~ .counter{color:var(--cream)}
   .hint{position:fixed;right:26px;bottom:24px;z-index:50;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700}
 
-  /* reveal on active */
-  .slide .inner>*{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
-  .slide.active .inner>*{opacity:1;transform:none}
-  .slide.active .inner>*:nth-child(2){transition-delay:.08s}
-  .slide.active .inner>*:nth-child(3){transition-delay:.16s}
-  .slide.active .inner>*:nth-child(4){transition-delay:.24s}
-  .slide.active .inner>*:nth-child(5){transition-delay:.32s}
+  /* Entrance animation is a PROGRESSIVE ENHANCEMENT only. Content is ALWAYS visible by
+     default - never gated behind JS/observer (which fails inside nested scrollers on iOS). */
+  @keyframes rise{from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none}}
+  @media(min-width:861px) and (prefers-reduced-motion:no-preference){
+    .slide.active .inner>*{animation:rise .6s var(--ease) both}
+    .slide.active .inner>*:nth-child(2){animation-delay:.07s}
+    .slide.active .inner>*:nth-child(3){animation-delay:.14s}
+    .slide.active .inner>*:nth-child(4){animation-delay:.21s}
+    .slide.active .inner>*:nth-child(5){animation-delay:.28s}
+  }
 
-  @media(max-width:880px){
-    .slide{padding:70px 24px}
-    .cols2,.cols3,.demo-grid,.ba,.timeline{grid-template-columns:1fr!important;gap:18px}
-    .ba .arrow{transform:rotate(90deg);justify-self:center}
-    .dots{display:none}
-    .chan-row{grid-template-columns:30px 1fr;gap:10px}.chan-row .why{grid-column:1/-1}
-    .src{position:static;margin-top:26px}
+  /* MOBILE: turn the slide-deck into a normal, readable, vertically scrolling document.
+     No nested scroller / scroll-snap / 100dvh slides (all of which break on iOS Safari). */
+  @media(max-width:860px){
+    html{scroll-behavior:auto}
+    .deck{height:auto;overflow:visible;scroll-snap-type:none;-webkit-overflow-scrolling:auto}
+    .slide{min-height:0;height:auto;scroll-snap-align:none;display:block;padding:48px 22px;overflow:visible}
+    .slide .inner{max-width:none}
+    .dots,.counter,.hint,.progress{display:none!important}
+    h1.title{font-size:2.2rem;max-width:none}
+    h2.head{font-size:1.62rem;max-width:none}
+    .lede{font-size:1.06rem;max-width:none;margin-top:16px}
+    .eyebrow{margin-bottom:16px}
+    .cols2,.cols3,.demo-grid,.ba,.timeline{grid-template-columns:1fr!important;gap:16px;margin-top:24px}
+    .ba .arrow{transform:rotate(90deg);justify-self:center;font-size:2rem}
+    .chan{margin-top:22px}
+    .chan-row{grid-template-columns:28px 1fr;gap:6px 10px;padding:14px 16px}.chan-row .why{grid-column:1/-1}
+    .timeline{gap:16px}.tl{padding:0}.tl::before{display:none}
+    .role{margin-top:24px}.role span{font-size:.86rem}
+    .demo-copy .feat li{font-size:.95rem}
+    .card{padding:22px 20px}.card h3{font-size:1.15rem}
+    .ps{padding:22px 20px}.ps .n{font-size:2rem}
+    .insight{font-size:1rem;padding:18px 22px;margin-top:24px}
+    .tools{font-size:.95rem}
+    .src{position:static;margin-top:20px;font-size:.8rem}
+    .s-title .meta{gap:14px 22px;margin-top:24px}
+    .brandline span{font-size:1.2rem}
+    .btn{padding:13px 24px}
+    .s-cta .ctas{flex-direction:column}.s-cta .btn{width:100%;justify-content:center}
+    .contact{flex-direction:column;gap:12px;margin-top:26px}
   }
 </style>
 </head>
@@ -378,7 +403,7 @@ if(_qs.has('pdf')){
     '.deck{height:auto!important;overflow:visible!important;scroll-snap-type:none!important}'+
     '.slide{height:880px!important;min-height:880px!important;width:1280px!important;padding:54px 84px!important;break-after:page;page-break-after:always;overflow:hidden}'+
     '.slide:last-child{break-after:auto;page-break-after:auto}'+
-    '.slide .inner>*{opacity:1!important;transform:none!important}'+
+    '.slide .inner>*{opacity:1!important;transform:none!important;animation:none!important}'+
     '.dots,.progress,.counter,.hint{display:none!important}';
   document.head.appendChild(st);
   slides.forEach(s=>s.classList.add('active'));
@@ -419,6 +444,10 @@ addEventListener('keydown',e=>{
   if((e.key==='ArrowUp'||e.key==='PageUp')&&i>0){e.preventDefault();slides[i-1].scrollIntoView({behavior:'smooth'});}
 });
 slides[0].classList.add('active');
+// Safety net: content is visible by default in CSS, but ensure the desktop entrance
+// animation still plays for every slide even if the observer misses (iOS nested scroller).
+if(!('IntersectionObserver' in window)) slides.forEach(s=>s.classList.add('active'));
+setTimeout(()=>slides.forEach(s=>s.classList.add('active')), 1000);
 </script>
 </body>
 </html>
