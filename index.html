@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title data-i18n="meta_title">Jomi Hostel - Dushanbe, Tajikistan</title>
+<meta name="description" data-i18n="meta_desc" content="A warm base camp in the heart of Dushanbe. Dorm beds and private rooms, free Wi-Fi and breakfast, the friendliest gateway to the Pamir Highway." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#221a13;
+    --ink-soft:#4a3f33;
+    --muted:#7a6c5b;
+    --cream:#f7f0e3;
+    --cream-2:#efe5d3;
+    --paper:#fbf6ec;
+    --line:#e3d7c1;
+    --clay:#bf552a;
+    --clay-deep:#9c4019;
+    --pine:#27433c;
+    --pine-2:#1c322d;
+    --gold:#d49a4c;
+    --sand:#d9c4a3;
+    --shadow:28px 28px 70px -30px rgba(48,33,18,.45);
+    --shadow-sm:0 18px 40px -24px rgba(48,33,18,.55);
+    --r:22px;
+    --maxw:1200px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Manrope',sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* grain overlay */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;
+  }
+  h1,h2,h3,.display{font-family:'Playfair Display',Georgia,serif;font-weight:700;line-height:1.04;letter-spacing:-.01em}
+  em,.it{font-style:italic}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .eyebrow{
+    font-family:'Manrope';font-weight:700;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--clay);display:inline-flex;align-items:center;gap:.7em;
+  }
+  .eyebrow::before{content:"";width:30px;height:1.5px;background:var(--clay);display:inline-block}
+  .eyebrow.center::after{content:"";width:30px;height:1.5px;background:var(--clay);display:inline-block}
+  .btn{
+    display:inline-flex;align-items:center;gap:.6em;font-family:'Manrope';font-weight:700;font-size:.95rem;
+    padding:15px 28px;border-radius:999px;border:1.5px solid transparent;cursor:pointer;transition:.35s var(--ease);
+    letter-spacing:.01em;
+  }
+  .btn-primary{background:var(--clay);color:#fff;box-shadow:0 14px 30px -12px rgba(191,85,42,.7)}
+  .btn-primary:hover{background:var(--clay-deep);transform:translateY(-2px)}
+  .btn-ghost{border-color:rgba(255,255,255,.55);color:#fff}
+  .btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff}
+  .btn-dark{background:var(--pine);color:#fff}
+  .btn-dark:hover{background:var(--pine-2);transform:translateY(-2px)}
+  .btn-outline{border-color:var(--ink);color:var(--ink)}
+  .btn-outline:hover{background:var(--ink);color:var(--cream)}
+
+  /* ---------- header ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;transition:.4s var(--ease);
+    padding:22px 0;
+  }
+  header.scrolled{background:var(--paper);box-shadow:0 10px 30px -22px rgba(48,33,18,.7);padding:13px 0}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:'Playfair Display';font-weight:800;font-size:1.5rem;color:#fff;transition:color .4s}
+  header.scrolled .brand{color:var(--ink)}
+  .brand svg{width:30px;height:30px;flex:none}
+  .brand .mark-stroke{stroke:var(--clay)}
+  .brand b{letter-spacing:.04em}
+  .navlinks{display:flex;gap:30px;list-style:none}
+  .navlinks a{font-family:'Manrope';font-weight:600;font-size:.93rem;color:rgba(255,255,255,.92);position:relative;padding:4px 0;transition:color .4s}
+  header.scrolled .navlinks a{color:var(--ink-soft)}
+  .navlinks a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:var(--clay);transition:width .3s var(--ease)}
+  .navlinks a:hover::after{width:100%}
+  .nav-right{display:flex;align-items:center;gap:16px}
+  .lang{display:flex;border:1.5px solid rgba(255,255,255,.5);border-radius:999px;overflow:hidden;font-family:'Manrope';font-weight:700;font-size:.78rem}
+  header.scrolled .lang{border-color:var(--line)}
+  .lang button{background:none;border:none;color:#fff;padding:7px 12px;cursor:pointer;transition:.25s;letter-spacing:.04em}
+  header.scrolled .lang button{color:var(--ink-soft)}
+  .lang button.active{background:var(--clay);color:#fff}
+  header.scrolled .lang button.active{color:#fff}
+  .nav-book{display:inline-flex}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+  .burger span{width:24px;height:2px;background:#fff;transition:.3s}
+  header.scrolled .burger span{background:var(--ink)}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:url("assets/hero.jpg") center/cover no-repeat;transform:scale(1.08);will-change:transform}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,20,12,.55) 0%,rgba(28,20,12,.1) 35%,rgba(28,20,12,.25) 60%,rgba(20,14,8,.86) 100%)}
+  .hero-inner{position:relative;z-index:2;width:100%;padding-bottom:74px;padding-top:120px}
+  .hero .eyebrow{color:var(--gold)}
+  .hero .eyebrow::before{background:var(--gold)}
+  .hero h1{font-size:clamp(2.9rem,7.2vw,6rem);margin:20px 0 18px;max-width:14ch;text-shadow:0 2px 30px rgba(0,0,0,.35)}
+  .hero h1 em{color:var(--gold)}
+  .hero p.lede{font-size:clamp(1.05rem,1.5vw,1.28rem);max-width:46ch;color:rgba(255,255,255,.92);font-weight:500}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px;align-items:center}
+  .price-chip{
+    display:inline-flex;flex-direction:column;line-height:1.1;padding:10px 20px;border-radius:16px;
+    background:rgba(255,255,255,.12);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.25);margin-left:6px
+  }
+  .price-chip small{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;opacity:.8;font-weight:700}
+  .price-chip b{font-family:'Playfair Display';font-size:1.5rem;font-weight:700}
+  .scroll-hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:3;color:rgba(255,255,255,.7);font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;writing-mode:vertical-rl;display:flex;align-items:center;gap:10px}
+  .scroll-hint::after{content:"";width:1px;height:46px;background:linear-gradient(rgba(255,255,255,.7),transparent);animation:scrolldot 2s var(--ease) infinite}
+  @keyframes scrolldot{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* ---------- marquee strip ---------- */
+  .strip{background:var(--pine);color:var(--cream);overflow:hidden;padding:16px 0}
+  .marquee{display:flex;gap:46px;white-space:nowrap;width:max-content;animation:slide 32s linear infinite;font-family:'Manrope';font-weight:600;letter-spacing:.04em;font-size:.95rem}
+  .marquee span{display:inline-flex;align-items:center;gap:14px;opacity:.9}
+  .marquee span::after{content:"\2727";color:var(--gold);margin-left:46px}
+  @keyframes slide{to{transform:translateX(-50%)}}
+
+  /* ---------- sections ---------- */
+  section{position:relative}
+  .pad{padding:104px 0}
+  .sec-head{max-width:640px}
+  .sec-head.center{margin:0 auto;text-align:center}
+  .sec-head h2{font-size:clamp(2.1rem,4.2vw,3.4rem);margin:18px 0 0}
+  .sec-head h2 em{color:var(--clay)}
+  .sec-head p{margin-top:18px;color:var(--muted);font-size:1.06rem}
+
+  /* about */
+  .about{background:var(--cream)}
+  .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;margin-top:8px}
+  .about-copy p{color:var(--ink-soft);margin-top:18px;font-size:1.06rem}
+  .about-stats{display:flex;gap:34px;margin-top:34px;flex-wrap:wrap}
+  .stat b{font-family:'Playfair Display';font-size:2.4rem;color:var(--clay);display:block;line-height:1}
+  .stat small{font-size:.82rem;color:var(--muted);font-weight:600;letter-spacing:.03em}
+  .about-media{position:relative}
+  .about-media img{width:100%;height:520px;object-fit:cover;border-radius:var(--r);box-shadow:var(--shadow)}
+  .about-media .tag{
+    position:absolute;left:-26px;bottom:38px;background:var(--paper);padding:20px 26px;border-radius:16px;box-shadow:var(--shadow-sm);
+    max-width:230px
+  }
+  .about-media .tag b{font-family:'Playfair Display';font-size:1.15rem;display:block}
+  .about-media .tag small{color:var(--muted);font-size:.85rem}
+
+  /* rooms */
+  .rooms{background:var(--paper)}
+  .room-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:54px}
+  .room-card{background:var(--cream);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-sm);transition:.45s var(--ease);display:flex;flex-direction:column}
+  .room-card:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
+  .room-card .ph{height:236px;overflow:hidden}
+  .room-card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+  .room-card:hover .ph img{transform:scale(1.07)}
+  .room-body{padding:26px 26px 28px;display:flex;flex-direction:column;flex:1}
+  .room-body h3{font-size:1.55rem}
+  .room-body .feat{list-style:none;margin:14px 0 22px;display:flex;flex-wrap:wrap;gap:8px}
+  .room-body .feat li{font-size:.8rem;font-weight:600;color:var(--ink-soft);background:var(--cream-2);padding:5px 11px;border-radius:999px}
+  .room-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .room-foot .pr{font-family:'Playfair Display';font-size:1.7rem;color:var(--clay)}
+  .room-foot .pr small{font-family:'Manrope';font-size:.8rem;color:var(--muted);font-weight:600}
+
+  /* amenities */
+  .amen{background:var(--cream)}
+  .amen-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:50px}
+  .amen-item{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:26px 22px;transition:.35s var(--ease)}
+  .amen-item:hover{transform:translateY(-5px);border-color:var(--clay);box-shadow:var(--shadow-sm)}
+  .amen-item svg{width:30px;height:30px;stroke:var(--clay);stroke-width:1.6;fill:none;margin-bottom:14px}
+  .amen-item b{display:block;font-size:1.02rem;font-weight:700}
+  .amen-item small{color:var(--muted);font-size:.86rem}
+
+  /* gallery */
+  .gallery{background:var(--pine);color:var(--cream)}
+  .gallery .sec-head h2 em{color:var(--gold)}
+  .gallery .sec-head p{color:rgba(247,240,227,.75)}
+  .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px;margin-top:50px}
+  .gal-grid figure{overflow:hidden;border-radius:16px;cursor:pointer;position:relative}
+  .gal-grid img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+  .gal-grid figure:hover img{transform:scale(1.08)}
+  .gal-grid .big{grid-column:span 2;grid-row:span 2}
+  .gal-grid .tall{grid-row:span 2}
+
+  /* location */
+  .loc{background:var(--paper)}
+  .loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-top:8px}
+  .loc-copy .dist{list-style:none;margin-top:26px;display:grid;gap:14px}
+  .loc-copy .dist li{display:flex;justify-content:space-between;border-bottom:1px dashed var(--line);padding-bottom:12px;font-weight:600;color:var(--ink-soft)}
+  .loc-copy .dist li span:last-child{color:var(--clay);font-family:'Playfair Display';font-size:1.05rem}
+  .loc-map{border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);height:430px;border:6px solid var(--paper)}
+  .loc-map iframe{width:100%;height:100%;border:0;filter:saturate(.92)}
+
+  /* reviews */
+  .rev{background:var(--cream)}
+  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:50px}
+  .rev-card{background:var(--paper);border-radius:var(--r);padding:32px 30px;box-shadow:var(--shadow-sm);position:relative}
+  .rev-card .stars{color:var(--gold);font-size:1.05rem;letter-spacing:2px}
+  .rev-card .quote{font-family:'Playfair Display';font-style:italic;font-size:1.18rem;line-height:1.5;margin:16px 0 22px;color:var(--ink)}
+  .rev-card .who{display:flex;align-items:center;gap:13px}
+  .rev-card .who .av{width:42px;height:42px;border-radius:50%;background:var(--clay);color:#fff;display:grid;place-items:center;font-weight:800;font-family:'Playfair Display';font-size:1.1rem}
+  .rev-card .who b{display:block;font-size:.96rem}
+  .rev-card .who small{color:var(--muted);font-size:.82rem}
+  .rev-note{text-align:center;margin-top:34px;color:var(--muted);font-size:.9rem}
+  .rev-note a{color:var(--clay);font-weight:700;border-bottom:1px solid var(--clay)}
+
+  /* book direct */
+  .book{background:linear-gradient(135deg,var(--clay) 0%,var(--clay-deep) 100%);color:#fff;position:relative;overflow:hidden}
+  .book::before{content:"";position:absolute;inset:0;background:url("assets/pamir.jpg") center/cover;opacity:.16;mix-blend-mode:overlay}
+  .book-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .book-copy h2{font-size:clamp(2rem,4vw,3.2rem);color:#fff}
+  .book-copy p{margin-top:16px;color:rgba(255,255,255,.9);font-size:1.08rem;max-width:42ch}
+  .book-copy .save{display:inline-flex;align-items:center;gap:10px;margin-top:22px;background:rgba(255,255,255,.15);padding:10px 18px;border-radius:999px;font-weight:700;font-size:.92rem}
+  .form{background:var(--paper);border-radius:var(--r);padding:34px;box-shadow:var(--shadow);color:var(--ink)}
+  .form h3{font-size:1.4rem;margin-bottom:6px}
+  .form .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+  .field{display:flex;flex-direction:column;gap:6px}
+  .field label{font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+  .field input,.field select{
+    font-family:'Manrope';font-size:.95rem;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);transition:.25s
+  }
+  .field input:focus,.field select:focus{outline:none;border-color:var(--clay)}
+  .form .acts{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+  .form .acts .btn{flex:1;justify-content:center;min-width:150px}
+  .wa{background:#25D366;color:#fff}
+  .wa:hover{background:#1da851;transform:translateY(-2px)}
+  .tg{background:#229ED9;color:#fff}
+  .tg:hover{background:#1b85b8;transform:translateY(-2px)}
+  .form small.disc{display:block;margin-top:14px;color:var(--muted);font-size:.8rem}
+
+  /* footer */
+  footer{background:var(--pine-2);color:rgba(247,240,227,.82);padding:72px 0 30px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:44px}
+  .foot-brand .brand{color:#fff;margin-bottom:16px}
+  .foot-brand p{font-size:.95rem;max-width:34ch;color:rgba(247,240,227,.62)}
+  .foot-col h4{font-family:'Manrope';font-weight:800;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+  .foot-col a,.foot-col p{display:block;font-size:.95rem;margin-bottom:11px;color:rgba(247,240,227,.78);transition:color .25s}
+  .foot-col a:hover{color:#fff}
+  .socials{display:flex;gap:12px;margin-top:6px}
+  .socials a{width:40px;height:40px;border-radius:50%;border:1px solid rgba(247,240,227,.25);display:grid;place-items:center;transition:.3s}
+  .socials a:hover{background:var(--clay);border-color:var(--clay)}
+  .socials svg{width:18px;height:18px;fill:currentColor}
+  .foot-bottom{margin-top:54px;padding-top:24px;border-top:1px solid rgba(247,240,227,.14);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.84rem;color:rgba(247,240,227,.5)}
+  .foot-bottom a{color:var(--gold);font-weight:600}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
+
+  /* lightbox */
+  .lb{position:fixed;inset:0;background:rgba(20,14,8,.92);z-index:1000;display:none;align-items:center;justify-content:center;padding:30px;cursor:zoom-out}
+  .lb.open{display:flex}
+  .lb img{max-width:92vw;max-height:88vh;border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+
+  /* responsive */
+  @media(max-width:960px){
+    .navlinks,.nav-book{display:none}
+    .burger{display:flex}
+    .about-grid,.loc-grid,.book-grid{grid-template-columns:1fr;gap:38px}
+    .about-media .tag{left:18px}
+    .room-grid,.rev-grid{grid-template-columns:1fr 1fr}
+    .amen-grid{grid-template-columns:1fr 1fr}
+    .gal-grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:620px){
+    .wrap{padding:0 20px}
+    .pad{padding:74px 0}
+    .room-grid,.rev-grid,.amen-grid{grid-template-columns:1fr}
+    .form .row{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr;gap:32px}
+    .hero h1{font-size:2.7rem}
+    .about-media img{height:380px}
+    .mobile-nav.open{display:flex}
+  }
+  /* mobile nav drawer */
+  .mobile-nav{display:none;position:fixed;inset:0;z-index:99;background:var(--paper);flex-direction:column;align-items:center;justify-content:center;gap:26px}
+  .mobile-nav a{font-family:'Playfair Display';font-size:1.8rem;color:var(--ink)}
+  .mobile-nav .btn{margin-top:10px}
+  .mobile-nav .close{position:absolute;top:24px;right:24px;font-size:2rem;background:none;border:none;cursor:pointer;color:var(--ink)}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#" class="brand" aria-label="Jomi Hostel">
+      <svg viewBox="0 0 32 32" fill="none"><path class="mark-stroke" d="M3 25 L11 11 L16 19 L21 8 L29 25 Z" stroke-width="2.2" stroke-linejoin="round"/><circle cx="21" cy="8" r="2.4" fill="var(--gold)"/></svg>
+      <b>JOMI</b>
+    </a>
+    <ul class="navlinks">
+      <li><a href="#about" data-i18n="nav_about">Stay</a></li>
+      <li><a href="#rooms" data-i18n="nav_rooms">Rooms</a></li>
+      <li><a href="#gallery" data-i18n="nav_gallery">Gallery</a></li>
+      <li><a href="#location" data-i18n="nav_location">Location</a></li>
+      <li><a href="#reviews" data-i18n="nav_reviews">Reviews</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Language">
+        <button data-lang="en" class="active">EN</button>
+        <button data-lang="ru">RU</button>
+      </div>
+      <a href="#book" class="btn btn-primary nav-book" data-i18n="nav_book">Book now</a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- mobile nav -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="close" id="navClose" aria-label="Close">&times;</button>
+  <a href="#about" data-i18n="nav_about">Stay</a>
+  <a href="#rooms" data-i18n="nav_rooms">Rooms</a>
+  <a href="#gallery" data-i18n="nav_gallery">Gallery</a>
+  <a href="#location" data-i18n="nav_location">Location</a>
+  <a href="#reviews" data-i18n="nav_reviews">Reviews</a>
+  <a href="#book" class="btn btn-primary" data-i18n="nav_book">Book now</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-inner wrap">
+    <span class="eyebrow reveal" data-i18n="hero_eyebrow">Dushanbe - Tajikistan</span>
+    <h1 class="reveal d1" data-i18n="hero_h1">Your base camp at the <em>gateway to the Pamirs</em></h1>
+    <p class="lede reveal d2" data-i18n="hero_lede">A warm, friendly hostel in the heart of Dushanbe. Comfy dorm beds, private rooms, real breakfast and travellers from every corner of the world.</p>
+    <div class="hero-cta reveal d3">
+      <a href="#book" class="btn btn-primary" data-i18n="hero_cta1">Book your bed</a>
+      <a href="#rooms" class="btn btn-ghost" data-i18n="hero_cta2">See rooms</a>
+      <span class="price-chip"><small data-i18n="hero_from">From</small><b>$9<span style="font-size:.9rem"> / <span data-i18n="night">night</span></span></b></span>
+    </div>
+  </div>
+  <div class="scroll-hint" data-i18n="scroll">Scroll</div>
+</section>
+
+<!-- ===== STRIP ===== -->
+<div class="strip">
+  <div class="marquee" id="marquee">
+    <span data-i18n="m1">Free Wi-Fi everywhere</span>
+    <span data-i18n="m2">Breakfast included</span>
+    <span data-i18n="m3">24/7 reception</span>
+    <span data-i18n="m4">Shared kitchen</span>
+    <span data-i18n="m5">Pamir Highway tours</span>
+    <span data-i18n="m6">QR & card payments</span>
+  </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<section class="pad about" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-copy">
+        <span class="eyebrow reveal" data-i18n="about_eyebrow">Welcome to Jomi</span>
+        <div class="sec-head reveal d1"><h2 data-i18n="about_h2">More than a bed - a <em>home between mountains</em></h2></div>
+        <p class="reveal d2" data-i18n="about_p1">Jomi Hostel sits right in the centre of Dushanbe, a short walk from the bazaar, parks and the city's best plov. Whether you are heading out onto the Pamir Highway or just discovering Tajikistan, we are the easiest, friendliest place to land.</p>
+        <p class="reveal d2" data-i18n="about_p2">Clean dorms with proper beds, calm private rooms, a kitchen you can actually cook in and a rooftop where strangers become travel companions. We speak your language - English, Russian and Tajik.</p>
+        <div class="about-stats reveal d3">
+          <div class="stat"><b>4.0<span style="font-size:1.2rem">/5</span></b><small data-i18n="stat1">Guest rating</small></div>
+          <div class="stat"><b>30+</b><small data-i18n="stat2">Beds & rooms</small></div>
+          <div class="stat"><b>40+</b><small data-i18n="stat3">Nationalities hosted</small></div>
+        </div>
+      </div>
+      <div class="about-media reveal d2">
+        <img src="assets/lounge.jpg" alt="Jomi Hostel common lounge" />
+        <div class="tag"><b data-i18n="about_tag_b">In the heart of the city</b><small data-i18n="about_tag_s">Abuali ibni Sino St, Dushanbe</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ROOMS ===== -->
+<section class="pad rooms" id="rooms">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow center" data-i18n="rooms_eyebrow">Where you sleep</span>
+      <h2 data-i18n="rooms_h2">Beds & rooms for <em>every traveller</em></h2>
+      <p data-i18n="rooms_p">Pick a bunk in a sociable dorm or your own quiet room. Fresh linens, reading lamps and lockers come as standard.</p>
+    </div>
+    <div class="room-grid">
+      <article class="room-card reveal d1">
+        <div class="ph"><img src="assets/dorm4.jpg" alt="4-bed dorm" /></div>
+        <div class="room-body">
+          <h3 data-i18n="room1_t">4-Bed Dorm</h3>
+          <ul class="feat">
+            <li data-i18n="f_bunk">Private bunk</li><li data-i18n="f_lamp">Reading lamp</li><li data-i18n="f_locker">Locker</li><li data-i18n="f_share">Shared bath</li>
+          </ul>
+          <div class="room-foot">
+            <div class="pr">$12 <small>/ <span data-i18n="night">night</span></small></div>
+            <a href="#book" class="btn btn-outline" data-i18n="room_btn">Book</a>
+          </div>
+        </div>
+      </article>
+      <article class="room-card reveal d2">
+        <div class="ph"><img src="assets/dorm.jpg" alt="6-bed dorm" /></div>
+        <div class="room-body">
+          <h3 data-i18n="room2_t">6-Bed Dorm</h3>
+          <ul class="feat">
+            <li data-i18n="f_curtain">Privacy curtain</li><li data-i18n="f_lamp">Reading lamp</li><li data-i18n="f_locker">Locker</li><li data-i18n="f_value">Best value</li>
+          </ul>
+          <div class="room-foot">
+            <div class="pr">$9 <small>/ <span data-i18n="night">night</span></small></div>
+            <a href="#book" class="btn btn-outline" data-i18n="room_btn">Book</a>
+          </div>
+        </div>
+      </article>
+      <article class="room-card reveal d3">
+        <div class="ph"><img src="assets/private.jpg" alt="Private room" /></div>
+        <div class="room-body">
+          <h3 data-i18n="room3_t">Private Room</h3>
+          <ul class="feat">
+            <li data-i18n="f_double">Double bed</li><li data-i18n="f_private">Private space</li><li data-i18n="f_desk">Work desk</li><li data-i18n="f_quiet">Quiet</li>
+          </ul>
+          <div class="room-foot">
+            <div class="pr">$28 <small>/ <span data-i18n="night">night</span></small></div>
+            <a href="#book" class="btn btn-outline" data-i18n="room_btn">Book</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AMENITIES ===== -->
+<section class="pad amen">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow center" data-i18n="amen_eyebrow">Everything included</span>
+      <h2 data-i18n="amen_h2">Small comforts that <em>make the trip</em></h2>
+    </div>
+    <div class="amen-grid">
+      <div class="amen-item reveal d1"><svg viewBox="0 0 24 24"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1" fill="var(--clay)" stroke="none"/></svg><b data-i18n="a1_t">Fast Wi-Fi</b><small data-i18n="a1_s">In every room and the rooftop</small></div>
+      <div class="amen-item reveal d2"><svg viewBox="0 0 24 24"><path d="M4 19h16"/><path d="M6 19c0-5 2-8 6-8s6 3 6 8"/><path d="M12 7V4"/></svg><b data-i18n="a2_t">Breakfast</b><small data-i18n="a2_s">Tea, bread, eggs and fruit</small></div>
+      <div class="amen-item reveal d3"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 4v6M12 4v6M16 4v4"/></svg><b data-i18n="a3_t">Guest kitchen</b><small data-i18n="a3_s">Cook your own meals</small></div>
+      <div class="amen-item reveal d4"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg><b data-i18n="a4_t">24/7 reception</b><small data-i18n="a4_s">Late bus? We are awake</small></div>
+      <div class="amen-item reveal d1"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><path d="M12 5v14M5 12h14"/></svg><b data-i18n="a5_t">Laundry</b><small data-i18n="a5_s">Wash before the next leg</small></div>
+      <div class="amen-item reveal d2"><svg viewBox="0 0 24 24"><path d="M4 20 L9 6 L14 14 L17 8 L20 20 Z"/></svg><b data-i18n="a6_t">Pamir tours</b><small data-i18n="a6_s">Permits, drivers, route help</small></div>
+      <div class="amen-item reveal d3"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6M9 11h6M9 15h3"/></svg><b data-i18n="a7_t">Lockers</b><small data-i18n="a7_s">Keep your gear safe</small></div>
+      <div class="amen-item reveal d4"><svg viewBox="0 0 24 24"><rect x="3" y="9" width="7" height="7"/><rect x="14" y="9" width="7" height="7"/><path d="M5 9V6h14v3"/></svg><b data-i18n="a8_t">QR & cards</b><small data-i18n="a8_s">Pay how you like</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section class="pad gallery" id="gallery">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow center" data-i18n="gal_eyebrow">A look inside</span>
+      <h2 data-i18n="gal_h2">Come and <em>feel at home</em></h2>
+    </div>
+    <div class="gal-grid">
+      <figure class="big reveal"><img src="assets/courtyard.jpg" alt="Courtyard" /></figure>
+      <figure class="reveal d1"><img src="assets/kitchen.jpg" alt="Kitchen" /></figure>
+      <figure class="tall reveal d2"><img src="assets/private.jpg" alt="Private room" /></figure>
+      <figure class="reveal d1"><img src="assets/dorm4.jpg" alt="Dorm" /></figure>
+      <figure class="reveal d2"><img src="assets/lounge.jpg" alt="Lounge" /></figure>
+      <figure class="tall reveal d3"><img src="assets/pamir.jpg" alt="Pamir Highway" /></figure>
+      <figure class="big reveal d2"><img src="assets/hero.jpg" alt="Rooftop terrace" /></figure>
+      <figure class="reveal d3"><img src="assets/dorm.jpg" alt="6-bed dorm" /></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOCATION ===== -->
+<section class="pad loc" id="location">
+  <div class="wrap">
+    <div class="loc-grid">
+      <div class="loc-copy reveal">
+        <span class="eyebrow" data-i18n="loc_eyebrow">Find us</span>
+        <div class="sec-head"><h2 data-i18n="loc_h2">Central Dushanbe, <em>minutes from everything</em></h2></div>
+        <p style="margin-top:18px;color:var(--muted);font-size:1.05rem" data-i18n="loc_p">We are on Abuali ibni Sino Street - close to the centre, the bazaar and transport for the Pamir Highway. Easy to reach, easy to leave for your next adventure.</p>
+        <ul class="dist">
+          <li><span data-i18n="d1">City centre & Rudaki Ave</span><span>~10 min</span></li>
+          <li><span data-i18n="d2">Mehrgon Bazaar</span><span>~12 min</span></li>
+          <li><span data-i18n="d3">Dushanbe Airport (DYU)</span><span>~20 min</span></li>
+          <li><span data-i18n="d4">Pamir Highway start</span><span>Gateway</span></li>
+        </ul>
+      </div>
+      <div class="loc-map reveal d2">
+        <iframe title="Jomi Hostel map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Abuali+ibni+Sino+Street+29,+Dushanbe,+Tajikistan&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section class="pad rev" id="reviews">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow center" data-i18n="rev_eyebrow">Loved by travellers</span>
+      <h2 data-i18n="rev_h2">Kind words from <em>past guests</em></h2>
+    </div>
+    <div class="rev-grid">
+      <div class="rev-card reveal d1">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="quote" data-i18n="rev1_q">"The perfect first stop in Tajikistan. The team sorted my GBAO permit and found me a ride up the Pamir Highway. Felt like family."</p>
+        <div class="who"><div class="av">L</div><div><b data-i18n="rev1_n">Lena M.</b><small data-i18n="rev1_c">Germany</small></div></div>
+      </div>
+      <div class="rev-card reveal d2">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="quote" data-i18n="rev2_q">"Clean, central and so friendly. The rooftop at sunset with mountain views is something I will not forget."</p>
+        <div class="who"><div class="av">A</div><div><b data-i18n="rev2_n">Anvar R.</b><small data-i18n="rev2_c">Kazakhstan</small></div></div>
+      </div>
+      <div class="rev-card reveal d3">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="quote" data-i18n="rev3_q">"Great value dorm, hot showers, strong Wi-Fi and the best plov recommendation in town. Would stay again in a heartbeat."</p>
+        <div class="who"><div class="av">J</div><div><b data-i18n="rev3_n">James T.</b><small data-i18n="rev3_c">Australia</small></div></div>
+      </div>
+    </div>
+    <p class="rev-note"><span data-i18n="rev_note">Sample reviews for demonstration. Read real guest reviews on</span> <a href="https://www.booking.com/hotel/tj/jomi-hostel-dushanbe3.html" target="_blank" rel="noopener">Booking.com</a> <span data-i18n="and">and</span> <a href="https://2gis.tj/dushanbe/firm/70000001110245473" target="_blank" rel="noopener">2GIS</a>.</p>
+  </div>
+</section>
+
+<!-- ===== BOOK DIRECT ===== -->
+<section class="pad book" id="book">
+  <div class="wrap">
+    <div class="book-grid">
+      <div class="book-copy reveal">
+        <span class="eyebrow" style="color:#fff" data-i18n="book_eyebrow">Book direct</span>
+        <h2 data-i18n="book_h2">Skip the fees. Book straight with us.</h2>
+        <p data-i18n="book_p">Send us your dates and we will hold your bed - no booking platform, no commission, just the best price and a real person on the other side.</p>
+        <span class="save">&#10003; <span data-i18n="book_save">Up to 18% cheaper than booking sites</span></span>
+      </div>
+      <form class="form reveal d2" id="bookForm" onsubmit="return false">
+        <h3 data-i18n="form_h">Request your stay</h3>
+        <small class="disc" data-i18n="form_sub">We reply within the hour on WhatsApp or Telegram.</small>
+        <div class="row">
+          <div class="field"><label data-i18n="form_name">Name</label><input id="f_name" type="text" data-i18n-ph="ph_name" placeholder="Your name" /></div>
+          <div class="field"><label data-i18n="form_guests">Guests</label><input id="f_guests" type="number" min="1" value="1" /></div>
+        </div>
+        <div class="row">
+          <div class="field"><label data-i18n="form_in">Check-in</label><input id="f_in" type="date" /></div>
+          <div class="field"><label data-i18n="form_out">Check-out</label><input id="f_out" type="date" /></div>
+        </div>
+        <div class="field" style="margin-top:14px">
+          <label data-i18n="form_room">Room type</label>
+          <select id="f_room">
+            <option data-i18n="opt1">6-Bed Dorm - $9/night</option>
+            <option data-i18n="opt2">4-Bed Dorm - $12/night</option>
+            <option data-i18n="opt3">Private Room - $28/night</option>
+          </select>
+        </div>
+        <div class="acts">
+          <a id="waBtn" class="btn wa" target="_blank" rel="noopener" data-i18n="wa_btn">Send on WhatsApp</a>
+          <a id="tgBtn" class="btn tg" target="_blank" rel="noopener" data-i18n="tg_btn">Send on Telegram</a>
+        </div>
+        <small class="disc" data-i18n="form_disc">Demo form - opens a pre-filled message in your messenger. No payment is taken online.</small>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand"><svg viewBox="0 0 32 32" fill="none"><path d="M3 25 L11 11 L16 19 L21 8 L29 25 Z" stroke="var(--gold)" stroke-width="2.2" stroke-linejoin="round"/><circle cx="21" cy="8" r="2.4" fill="var(--gold)"/></svg><b>JOMI</b></div>
+        <p data-i18n="foot_about">A warm, friendly hostel in the heart of Dushanbe - your base camp at the gateway to the Pamirs.</p>
+        <div class="socials">
+          <a href="https://www.instagram.com/jomi.hostel/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 1.8.25 2.2.42.6.22 1 .49 1.4.92.43.4.7.8.92 1.4.17.4.36 1 .42 2.2.07 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.25 1.8-.42 2.2-.22.6-.49 1-.92 1.4-.4.43-.8.7-1.4.92-.4.17-1 .36-2.2.42-1.3.07-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-1.8-.25-2.2-.42-.6-.22-1-.49-1.4-.92-.43-.4-.7-.8-.92-1.4-.17-.4-.36-1-.42-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.25-1.8.42-2.2.22-.6.49-1 .92-1.4.4-.43.8-.7 1.4-.92.4-.17 1-.36 2.2-.42C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.1 0-3.5 0-4.7.07-.9.04-1.4.2-1.7.32-.43.17-.74.37-1.06.7-.32.31-.52.62-.69 1.05-.12.3-.28.8-.32 1.7C3.46 8.5 3.46 8.9 3.46 12s0 3.5.07 4.7c.04.9.2 1.4.32 1.7.17.43.37.74.69 1.06.32.32.63.52 1.06.69.3.12.8.28 1.7.32 1.2.07 1.6.07 4.7.07s3.5 0 4.7-.07c.9-.04 1.4-.2 1.7-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.12-.3.28-.8.32-1.7.07-1.2.07-1.6.07-4.7s0-3.5-.07-4.7c-.04-.9-.2-1.4-.32-1.7a2.85 2.85 0 0 0-.69-1.05 2.85 2.85 0 0 0-1.06-.7c-.3-.12-.8-.28-1.7-.32C15.5 4 15.1 4 12 4Zm0 3.06A4.94 4.94 0 1 1 7.06 12 4.94 4.94 0 0 1 12 7.06Zm0 8.14A3.2 3.2 0 1 0 8.8 12 3.2 3.2 0 0 0 12 15.2Zm5.13-8.34a1.15 1.15 0 1 1-1.15-1.15 1.15 1.15 0 0 1 1.15 1.15Z"/></svg></a>
+          <a href="https://t.me/jomihostel" target="_blank" rel="noopener" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M21.94 4.3 18.6 19.1c-.25 1.1-.92 1.37-1.86.85l-5.14-3.79-2.48 2.39c-.27.27-.5.5-1.03.5l.37-5.23 9.5-8.58c.41-.37-.09-.57-.64-.2L5.05 12.1l-5.06-1.58c-1.1-.34-1.12-1.1.23-1.63L20.5 2.7c.92-.34 1.72.2 1.44 1.6Z" transform="translate(1 0)"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot_visit">Visit</h4>
+        <p data-i18n="foot_addr">Abuali ibni Sino St, 29/1<br>Dushanbe, Tajikistan</p>
+        <a href="tel:+992553042222">+992 55 304 2222</a>
+        <a href="https://2gis.tj/dushanbe/firm/70000001110245473" target="_blank" rel="noopener" data-i18n="foot_2gis">Find us on 2GIS</a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot_book_h">Book on</h4>
+        <a href="https://www.booking.com/hotel/tj/jomi-hostel-dushanbe3.html" target="_blank" rel="noopener">Booking.com</a>
+        <a href="https://www.agoda.com/jomi-hostel-h84561516/hotel/dushanbe-tj.html" target="_blank" rel="noopener">Agoda</a>
+        <a href="#book" data-i18n="foot_direct">Book direct (best price)</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; <span id="yr"></span> Jomi Hostel, Dushanbe.</span>
+      <span data-i18n="foot_made">Demo site built by <a href="#">AIXEL Solutions</a> - Automating Your Business</span>
+    </div>
+  </div>
+</footer>
+
+<div class="lb" id="lb"><img id="lbImg" src="" alt="" /></div>
+
+<script>
+const I18N = {
+  en:{
+    meta_title:"Jomi Hostel - Dushanbe, Tajikistan",
+    meta_desc:"A warm base camp in the heart of Dushanbe. Dorm beds and private rooms, free Wi-Fi and breakfast, the friendliest gateway to the Pamir Highway.",
+    nav_about:"Stay",nav_rooms:"Rooms",nav_gallery:"Gallery",nav_location:"Location",nav_reviews:"Reviews",nav_book:"Book now",
+    hero_eyebrow:"Dushanbe - Tajikistan",
+    hero_h1:"Your base camp at the gateway to the Pamirs",
+    hero_lede:"A warm, friendly hostel in the heart of Dushanbe. Comfy dorm beds, private rooms, real breakfast and travellers from every corner of the world.",
+    hero_cta1:"Book your bed",hero_cta2:"See rooms",hero_from:"From",night:"night",scroll:"Scroll",
+    m1:"Free Wi-Fi everywhere",m2:"Breakfast included",m3:"24/7 reception",m4:"Shared kitchen",m5:"Pamir Highway tours",m6:"QR & card payments",
+    about_eyebrow:"Welcome to Jomi",
+    about_h2:"More than a bed - a home between mountains",
+    about_p1:"Jomi Hostel sits right in the centre of Dushanbe, a short walk from the bazaar, parks and the city's best plov. Whether you are heading out onto the Pamir Highway or just discovering Tajikistan, we are the easiest, friendliest place to land.",
+    about_p2:"Clean dorms with proper beds, calm private rooms, a kitchen you can actually cook in and a rooftop where strangers become travel companions. We speak your language - English, Russian and Tajik.",
+    stat1:"Guest rating",stat2:"Beds & rooms",stat3:"Nationalities hosted",
+    about_tag_b:"In the heart of the city",about_tag_s:"Abuali ibni Sino St, Dushanbe",
+    rooms_eyebrow:"Where you sleep",rooms_h2:"Beds & rooms for every traveller",
+    rooms_p:"Pick a bunk in a sociable dorm or your own quiet room. Fresh linens, reading lamps and lockers come as standard.",
+    room1_t:"4-Bed Dorm",room2_t:"6-Bed Dorm",room3_t:"Private Room",room_btn:"Book",
+    f_bunk:"Private bunk",f_lamp:"Reading lamp",f_locker:"Locker",f_share:"Shared bath",
+    f_curtain:"Privacy curtain",f_value:"Best value",
+    f_double:"Double bed",f_private:"Private space",f_desk:"Work desk",f_quiet:"Quiet",
+    amen_eyebrow:"Everything included",amen_h2:"Small comforts that make the trip",
+    a1_t:"Fast Wi-Fi",a1_s:"In every room and the rooftop",
+    a2_t:"Breakfast",a2_s:"Tea, bread, eggs and fruit",
+    a3_t:"Guest kitchen",a3_s:"Cook your own meals",
+    a4_t:"24/7 reception",a4_s:"Late bus? We are awake",
+    a5_t:"Laundry",a5_s:"Wash before the next leg",
+    a6_t:"Pamir tours",a6_s:"Permits, drivers, route help",
+    a7_t:"Lockers",a7_s:"Keep your gear safe",
+    a8_t:"QR & cards",a8_s:"Pay how you like",
+    gal_eyebrow:"A look inside",gal_h2:"Come and feel at home",
+    loc_eyebrow:"Find us",loc_h2:"Central Dushanbe, minutes from everything",
+    loc_p:"We are on Abuali ibni Sino Street - close to the centre, the bazaar and transport for the Pamir Highway. Easy to reach, easy to leave for your next adventure.",
+    d1:"City centre & Rudaki Ave",d2:"Mehrgon Bazaar",d3:"Dushanbe Airport (DYU)",d4:"Pamir Highway start",
+    rev_eyebrow:"Loved by travellers",rev_h2:"Kind words from past guests",
+    rev1_q:"\"The perfect first stop in Tajikistan. The team sorted my GBAO permit and found me a ride up the Pamir Highway. Felt like family.\"",
+    rev1_n:"Lena M.",rev1_c:"Germany",
+    rev2_q:"\"Clean, central and so friendly. The rooftop at sunset with mountain views is something I will not forget.\"",
+    rev2_n:"Anvar R.",rev2_c:"Kazakhstan",
+    rev3_q:"\"Great value dorm, hot showers, strong Wi-Fi and the best plov recommendation in town. Would stay again in a heartbeat.\"",
+    rev3_n:"James T.",rev3_c:"Australia",
+    rev_note:"Sample reviews for demonstration. Read real guest reviews on",and:"and",
+    book_eyebrow:"Book direct",book_h2:"Skip the fees. Book straight with us.",
+    book_p:"Send us your dates and we will hold your bed - no booking platform, no commission, just the best price and a real person on the other side.",
+    book_save:"Up to 18% cheaper than booking sites",
+    form_h:"Request your stay",form_sub:"We reply within the hour on WhatsApp or Telegram.",
+    form_name:"Name",form_guests:"Guests",form_in:"Check-in",form_out:"Check-out",form_room:"Room type",
+    ph_name:"Your name",opt1:"6-Bed Dorm - $9/night",opt2:"4-Bed Dorm - $12/night",opt3:"Private Room - $28/night",
+    wa_btn:"Send on WhatsApp",tg_btn:"Send on Telegram",
+    form_disc:"Demo form - opens a pre-filled message in your messenger. No payment is taken online.",
+    foot_about:"A warm, friendly hostel in the heart of Dushanbe - your base camp at the gateway to the Pamirs.",
+    foot_visit:"Visit",foot_addr:"Abuali ibni Sino St, 29/1<br>Dushanbe, Tajikistan",foot_2gis:"Find us on 2GIS",
+    foot_book_h:"Book on",foot_direct:"Book direct (best price)",
+    foot_made:"Demo site built by <a href='#'>AIXEL Solutions</a> - Automating Your Business",
+    wa_msg:"Hello Jomi Hostel! I would like to book.%0AName: {name}%0AGuests: {guests}%0ACheck-in: {in}%0ACheck-out: {out}%0ARoom: {room}"
+  },
+  ru:{
+    meta_title:"Jomi Hostel - Душанбе, Таджикистан",
+    meta_desc:"Тёплый дом в центре Душанбе. Места в дормах и приватные комнаты, бесплатный Wi-Fi и завтрак, самые дружелюбные ворота к Памирскому тракту.",
+    nav_about:"О нас",nav_rooms:"Номера",nav_gallery:"Галерея",nav_location:"Локация",nav_reviews:"Отзывы",nav_book:"Забронировать",
+    hero_eyebrow:"Душанбе - Таджикистан",
+    hero_h1:"Ваша база у ворот Памира",
+    hero_lede:"Тёплый, дружелюбный хостел в самом центре Душанбе. Удобные койки в дормах, приватные комнаты, настоящий завтрак и путешественники со всего мира.",
+    hero_cta1:"Забронировать койку",hero_cta2:"Смотреть номера",hero_from:"от",night:"ночь",scroll:"Вниз",
+    m1:"Бесплатный Wi-Fi",m2:"Завтрак включён",m3:"Ресепшен 24/7",m4:"Общая кухня",m5:"Туры на Памир",m6:"Оплата QR и картой",
+    about_eyebrow:"Добро пожаловать в Jomi",
+    about_h2:"Больше, чем койка - дом среди гор",
+    about_p1:"Jomi Hostel находится в самом центре Душанбе, в нескольких минутах от базара, парков и лучшего плова в городе. Едете на Памирский тракт или только открываете Таджикистан - у нас проще и теплее всего начать путь.",
+    about_p2:"Чистые дормы с нормальными кроватями, спокойные приватные комнаты, кухня, на которой реально готовить, и крыша, где незнакомцы становятся попутчиками. Мы говорим на вашем языке - английский, русский и таджикский.",
+    stat1:"Оценка гостей",stat2:"Коек и комнат",stat3:"Стран среди гостей",
+    about_tag_b:"В самом центре города",about_tag_s:"ул. Абуали ибни Сино, Душанбе",
+    rooms_eyebrow:"Где вы спите",rooms_h2:"Койки и комнаты для каждого",
+    rooms_p:"Выберите место в общительном дорме или собственную тихую комнату. Свежее бельё, лампы для чтения и шкафчики - всегда в комплекте.",
+    room1_t:"Дорм на 4 койки",room2_t:"Дорм на 6 коек",room3_t:"Приватная комната",room_btn:"Бронь",
+    f_bunk:"Своя койка",f_lamp:"Лампа для чтения",f_locker:"Шкафчик",f_share:"Общий санузел",
+    f_curtain:"Шторка",f_value:"Выгодно",
+    f_double:"Двуспальная кровать",f_private:"Приватность",f_desk:"Рабочий стол",f_quiet:"Тихо",
+    amen_eyebrow:"Всё включено",amen_h2:"Мелочи, которые делают поездку",
+    a1_t:"Быстрый Wi-Fi",a1_s:"В каждом номере и на крыше",
+    a2_t:"Завтрак",a2_s:"Чай, хлеб, яйца и фрукты",
+    a3_t:"Кухня для гостей",a3_s:"Готовьте сами",
+    a4_t:"Ресепшен 24/7",a4_s:"Ночной автобус? Мы не спим",
+    a5_t:"Прачечная",a5_s:"Постирайте перед дорогой",
+    a6_t:"Туры на Памир",a6_s:"Пропуски, водители, маршруты",
+    a7_t:"Шкафчики",a7_s:"Ваши вещи в безопасности",
+    a8_t:"QR и карты",a8_s:"Оплата как удобно",
+    gal_eyebrow:"Загляните внутрь",gal_h2:"Заходите и чувствуйте себя как дома",
+    loc_eyebrow:"Где мы",loc_h2:"Центр Душанбе, в минутах от всего",
+    loc_p:"Мы на улице Абуали ибни Сино - рядом центр, базар и транспорт на Памирский тракт. Легко добраться и легко выехать навстречу приключениям.",
+    d1:"Центр и проспект Рудаки",d2:"Базар Мехргон",d3:"Аэропорт Душанбе (DYU)",d4:"Начало Памирского тракта",
+    rev_eyebrow:"Любят путешественники",rev_h2:"Тёплые слова прошлых гостей",
+    rev1_q:"«Идеальная первая остановка в Таджикистане. Ребята помогли с пропуском GBAO и нашли мне машину на Памир. Как родные.»",
+    rev1_n:"Лена М.",rev1_c:"Германия",
+    rev2_q:"«Чисто, в центре и очень дружелюбно. Крыша на закате с видом на горы - такое не забывается.»",
+    rev2_n:"Анвар Р.",rev2_c:"Казахстан",
+    rev3_q:"«Отличный дорм за свои деньги, горячий душ, мощный Wi-Fi и лучший совет, где есть плов. Вернусь не раздумывая.»",
+    rev3_n:"Джеймс Т.",rev3_c:"Австралия",
+    rev_note:"Отзывы показаны как пример. Реальные отзывы гостей читайте на",and:"и",
+    book_eyebrow:"Бронь напрямую",book_h2:"Без комиссий. Бронируйте напрямую у нас.",
+    book_p:"Пришлите даты - и мы придержим вашу койку. Без площадок и комиссий, только лучшая цена и живой человек на связи.",
+    book_save:"До 18% дешевле, чем на сайтах бронирования",
+    form_h:"Заявка на проживание",form_sub:"Отвечаем в течение часа в WhatsApp или Telegram.",
+    form_name:"Имя",form_guests:"Гостей",form_in:"Заезд",form_out:"Выезд",form_room:"Тип номера",
+    ph_name:"Ваше имя",opt1:"Дорм на 6 коек - $9/ночь",opt2:"Дорм на 4 койки - $12/ночь",opt3:"Приватная комната - $28/ночь",
+    wa_btn:"Написать в WhatsApp",tg_btn:"Написать в Telegram",
+    form_disc:"Демо-форма - открывает готовое сообщение в мессенджере. Оплата онлайн не взимается.",
+    foot_about:"Тёплый, дружелюбный хостел в центре Душанбе - ваша база у ворот Памира.",
+    foot_visit:"Адрес",foot_addr:"ул. Абуали ибни Сино, 29/1<br>Душанбе, Таджикистан",foot_2gis:"Мы на 2ГИС",
+    foot_book_h:"Бронь на",foot_direct:"Напрямую (лучшая цена)",
+    foot_made:"Демо-сайт от <a href='#'>AIXEL Solutions</a> - Automating Your Business",
+    wa_msg:"Здравствуйте, Jomi Hostel! Хочу забронировать.%0AИмя: {name}%0AГостей: {guests}%0AЗаезд: {in}%0AВыезд: {out}%0AНомер: {room}"
+  }
+};
+
+const urlLang = new URLSearchParams(location.search).get('lang');
+let lang = (urlLang==='ru'||urlLang==='en') ? urlLang : (localStorage.getItem('jomi_lang') || 'en');
+
+function applyLang(l){
+  lang = l;
+  const dict = I18N[l];
+  document.documentElement.lang = l;
+  document.title = dict.meta_title;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n');
+    if(dict[k]!==undefined){
+      if(dict[k].indexOf('<')>-1) el.innerHTML = dict[k];
+      else el.textContent = dict[k];
+    }
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const k = el.getAttribute('data-i18n-ph');
+    if(dict[k]!==undefined) el.placeholder = dict[k];
+  });
+  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active', b.dataset.lang===l));
+  localStorage.setItem('jomi_lang', l);
+  buildLinks();
+}
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
+
+// header scroll
+const hdr = document.getElementById('hdr');
+addEventListener('scroll',()=>{hdr.classList.toggle('scrolled', scrollY>40);});
+
+// hero parallax
+const heroBg = document.getElementById('heroBg');
+addEventListener('scroll',()=>{const y=scrollY; if(y<900) heroBg.style.transform='scale(1.08) translateY('+(y*0.18)+'px)';},{passive:true});
+
+// reveal
+const QA = new URLSearchParams(location.search).has('qa');
+if(QA){
+  document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+  const st=document.createElement('style');
+  st.textContent='html{scroll-behavior:auto}.hero{min-height:740px!important}';
+  document.head.appendChild(st);
+}else{
+  const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}
+
+// marquee duplicate for seamless loop
+const mq = document.getElementById('marquee'); mq.innerHTML += mq.innerHTML;
+
+// year
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// gallery lightbox
+const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg');
+document.querySelectorAll('.gal-grid img').forEach(img=>img.addEventListener('click',()=>{lbImg.src=img.src;lb.classList.add('open');}));
+lb.addEventListener('click',()=>lb.classList.remove('open'));
+
+// mobile nav
+const mn=document.getElementById('mobileNav');
+document.getElementById('burger').addEventListener('click',()=>mn.classList.add('open'));
+document.getElementById('navClose').addEventListener('click',()=>mn.classList.remove('open'));
+mn.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mn.classList.remove('open')));
+
+// booking deep links
+const PHONE='992553042222', TG='jomihostel';
+function buildLinks(){
+  const dict=I18N[lang];
+  const g=v=>document.getElementById(v).value;
+  const roomSel=document.getElementById('f_room');
+  const room=roomSel.options[roomSel.selectedIndex].textContent;
+  let msg=dict.wa_msg
+    .replace('{name}',encodeURIComponent(g('f_name')||'-'))
+    .replace('{guests}',encodeURIComponent(g('f_guests')||'1'))
+    .replace('{in}',encodeURIComponent(g('f_in')||'-'))
+    .replace('{out}',encodeURIComponent(g('f_out')||'-'))
+    .replace('{room}',encodeURIComponent(room));
+  document.getElementById('waBtn').href='https://wa.me/'+PHONE+'?text='+msg;
+  document.getElementById('tgBtn').href='https://t.me/'+TG;
+}
+['f_name','f_guests','f_in','f_out','f_room'].forEach(id=>document.getElementById(id).addEventListener('input',buildLinks));
+
+applyLang(lang);
+</script>
+</body>
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AIXEL x Jomi Hostel - Предложение</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#221a13;--ink-soft:#4a3f33;--muted:#7a6c5b;
+    --cream:#f7f0e3;--cream-2:#efe5d3;--paper:#fbf6ec;--line:#e3d7c1;
+    --clay:#bf552a;--clay-deep:#9c4019;--pine:#27433c;--pine-2:#1c322d;
+    --gold:#d49a4c;--sand:#d9c4a3;--green:#2f7d52;
+    --r:22px;--ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Manrope',sans-serif;color:var(--ink);background:var(--pine-2);line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.dp{font-family:'Playfair Display',Georgia,serif;line-height:1.05;letter-spacing:-.01em}
+  em{font-style:italic}
+  a{color:inherit;text-decoration:none}
+  .deck{height:100vh;height:100dvh;overflow-y:scroll;-webkit-overflow-scrolling:touch;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+  .deck::-webkit-scrollbar{width:0}
+  .slide{min-height:100vh;min-height:100dvh;scroll-snap-align:start;position:relative;display:flex;align-items:center;padding:80px 7vw;overflow:hidden}
+  .slide .inner{width:100%;max-width:1180px;margin:0 auto;position:relative;z-index:2}
+  .eyebrow{font-weight:800;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--clay);display:inline-flex;align-items:center;gap:.7em;margin-bottom:24px}
+  .eyebrow::before{content:"";width:34px;height:2px;background:var(--clay)}
+  .slide.dark .eyebrow{color:var(--gold)}.slide.dark .eyebrow::before{background:var(--gold)}
+
+  /* slide backgrounds */
+  .bg-cream{background:var(--cream)}
+  .bg-paper{background:var(--paper)}
+  .bg-pine{background:var(--pine);color:var(--cream)}
+  .bg-clay{background:linear-gradient(135deg,var(--clay),var(--clay-deep));color:#fff}
+  .slide.dark{color:var(--cream)}
+
+  h1.title{font-size:clamp(2.6rem,6vw,5.4rem);font-weight:800;max-width:16ch}
+  h1.title em{color:var(--gold)}
+  h2.head{font-size:clamp(2rem,4.4vw,3.4rem);font-weight:800;max-width:18ch}
+  h2.head em{color:var(--clay)}
+  .bg-pine h2.head em,.bg-clay h2.head em{color:var(--gold)}
+  .lede{font-size:clamp(1.05rem,1.6vw,1.35rem);max-width:54ch;margin-top:22px;color:var(--ink-soft);font-weight:500}
+  .dark .lede,.bg-pine .lede,.bg-clay .lede{color:rgba(247,240,227,.9)}
+
+  /* hero slide */
+  .s-title{background:var(--pine-2)}
+  .s-title::after{content:"";position:absolute;inset:0;background:url("assets/site-hero.jpg") center/cover;opacity:.22;z-index:1}
+  .s-title .inner{z-index:3}
+  .s-title .meta{margin-top:40px;display:flex;gap:30px;flex-wrap:wrap;color:rgba(247,240,227,.7);font-weight:600;font-size:.92rem}
+  .s-title .meta b{color:var(--gold)}
+  .brandline{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+  .brandline svg{width:34px;height:34px}
+  .brandline span{font-family:'Playfair Display';font-weight:800;font-size:1.4rem;color:#fff;letter-spacing:.03em}
+  .brandline .x{color:var(--gold);font-size:1rem;font-weight:600}
+
+  /* now slide - two columns */
+  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:38px}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:30px 32px}
+  .bg-paper .card{background:var(--cream)}
+  .card h3{font-size:1.25rem;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+  .card.good h3{color:var(--green)}.card.gap h3{color:var(--clay)}
+  .list{list-style:none}
+  .list li{padding:9px 0;border-bottom:1px dashed var(--line);font-weight:600;color:var(--ink-soft);display:flex;align-items:center;gap:11px;font-size:1rem}
+  .list li:last-child{border-bottom:0}
+  .ic{width:22px;height:22px;flex:none;border-radius:50%;display:grid;place-items:center;font-size:.8rem;font-weight:800;color:#fff}
+  .ic.y{background:var(--green)}.ic.n{background:var(--clay)}
+  .insight{margin-top:34px;background:var(--pine);color:var(--cream);padding:22px 28px;border-radius:16px;font-size:1.12rem;font-weight:600}
+  .insight b{color:var(--gold)}
+
+  /* 3x3 problem-solution */
+  .cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:42px}
+  .ps{background:var(--cream);border-radius:var(--r);padding:30px 28px;border-top:4px solid var(--clay);box-shadow:0 20px 40px -28px rgba(48,33,18,.5)}
+  .ps .n{font-family:'Playfair Display';font-size:2.4rem;font-weight:800;color:var(--clay);line-height:1}
+  .ps h3{font-size:1.3rem;font-weight:800;margin:8px 0 14px}
+  .ps .prob{color:var(--muted);font-size:.95rem;margin-bottom:14px}
+  .ps .sol{color:var(--ink);font-weight:600;font-size:.98rem;padding-top:14px;border-top:1px solid var(--line)}
+  .ps .sol b{color:var(--clay-deep)}
+
+  /* demo slide */
+  .demo-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;margin-top:30px}
+  .browser{border-radius:14px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.55);border:1px solid rgba(0,0,0,.1)}
+  .browser .bar{background:#e7ddca;padding:10px 14px;display:flex;align-items:center;gap:7px}
+  .browser .bar i{width:11px;height:11px;border-radius:50%;background:#c9b896;display:block}
+  .browser .bar .url{margin-left:12px;background:#fff;border-radius:6px;padding:4px 12px;font-size:.74rem;color:var(--muted);font-family:'Manrope';font-weight:600}
+  .browser img{width:100%;display:block}
+  .demo-copy .feat{list-style:none;margin-top:18px;display:grid;gap:12px}
+  .demo-copy .feat li{display:flex;gap:12px;align-items:flex-start;font-weight:600;color:var(--ink-soft)}
+  .demo-copy .feat li::before{content:"\2713";color:var(--clay);font-weight:800}
+  .btn{display:inline-flex;align-items:center;gap:.6em;font-weight:700;font-size:.98rem;padding:15px 30px;border-radius:999px;background:var(--clay);color:#fff;margin-top:26px;transition:.3s var(--ease);box-shadow:0 14px 30px -12px rgba(191,85,42,.7)}
+  .btn:hover{background:var(--clay-deep);transform:translateY(-2px)}
+
+  /* channels list */
+  .chan{margin-top:36px;display:grid;gap:12px}
+  .chan-row{display:grid;grid-template-columns:34px 1.1fr 2fr;gap:18px;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(247,240,227,.15);border-radius:14px;padding:15px 22px}
+  .chan-row .rank{font-family:'Playfair Display';font-size:1.5rem;font-weight:800;color:var(--gold)}
+  .chan-row b{font-size:1.08rem}
+  .chan-row .why{color:rgba(247,240,227,.78);font-size:.95rem}
+  .tag{display:inline-block;font-size:.7rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin-left:8px}
+  .tag.gap{background:var(--clay);color:#fff}.tag.boost{background:var(--gold);color:var(--pine-2)}.tag.free{background:var(--green);color:#fff}
+
+  /* before after */
+  .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:30px;align-items:center;margin-top:40px}
+  .ba .box{border-radius:var(--r);padding:30px 32px}
+  .ba .before{background:#efe2cf;border:1px dashed #c7ad84}
+  .ba .after{background:var(--pine);color:var(--cream)}
+  .ba h3{font-size:1.2rem;font-weight:800;margin-bottom:16px}
+  .ba .before h3{color:var(--clay-deep)}.ba .after h3{color:var(--gold)}
+  .ba ul{list-style:none;display:grid;gap:11px}
+  .ba li{font-weight:600;font-size:.98rem;display:flex;gap:10px}
+  .ba .before li::before{content:"\2715";color:var(--clay)}
+  .ba .after li::before{content:"\2713";color:var(--gold)}
+  .ba .arrow{font-size:2.4rem;color:var(--clay)}
+  .tools{margin-top:30px;color:var(--ink-soft);font-weight:600}
+  .tools b{color:var(--clay-deep)}
+
+  /* timeline */
+  .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:46px;position:relative}
+  .tl{padding:0 22px;position:relative}
+  .tl::before{content:"";position:absolute;top:13px;left:0;right:0;height:2px;background:rgba(247,240,227,.25)}
+  .tl .dot{width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--pine-2);display:grid;place-items:center;font-weight:800;font-size:.85rem;position:relative;z-index:2;margin-bottom:18px}
+  .tl .wk{font-size:.74rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+  .tl h3{font-size:1.1rem;font-weight:800;margin-bottom:8px}
+  .tl p{font-size:.92rem;color:rgba(247,240,227,.78)}
+  .role{margin-top:42px;display:flex;gap:14px;flex-wrap:wrap}
+  .role span{background:rgba(247,240,227,.1);border:1px solid rgba(247,240,227,.2);padding:9px 18px;border-radius:999px;font-weight:600;font-size:.9rem}
+
+  /* cta */
+  .s-cta{text-align:center}
+  .s-cta .inner{max-width:760px}
+  .s-cta .btn{background:#fff;color:var(--clay-deep)}
+  .s-cta .btn:hover{background:var(--cream)}
+  .s-cta .ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+  .s-cta .btn.line{background:transparent;border:1.5px solid rgba(255,255,255,.6);color:#fff;box-shadow:none}
+  .contact{margin-top:40px;display:flex;gap:30px;justify-content:center;flex-wrap:wrap;font-weight:600}
+  .contact a{color:#fff;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:2px}
+
+  .src{position:absolute;left:7vw;bottom:30px;font-size:.74rem;color:var(--muted);max-width:60ch;z-index:3}
+  .bg-pine .src,.dark .src{color:rgba(247,240,227,.45)}
+
+  /* nav */
+  .dots{position:fixed;right:26px;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:13px}
+  .dots button{width:11px;height:11px;border-radius:50%;border:1.5px solid var(--gold);background:transparent;cursor:pointer;transition:.3s;padding:0}
+  .dots button.active{background:var(--gold);transform:scale(1.35)}
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--clay);z-index:60;width:0;transition:width .25s}
+  .counter{position:fixed;left:26px;bottom:24px;z-index:50;font-family:'Playfair Display';font-weight:700;color:var(--muted);font-size:.95rem}
+  .slide.dark ~ .counter{color:var(--cream)}
+  .hint{position:fixed;right:26px;bottom:24px;z-index:50;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700}
+
+  /* reveal on active */
+  .slide .inner>*{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .slide.active .inner>*{opacity:1;transform:none}
+  .slide.active .inner>*:nth-child(2){transition-delay:.08s}
+  .slide.active .inner>*:nth-child(3){transition-delay:.16s}
+  .slide.active .inner>*:nth-child(4){transition-delay:.24s}
+  .slide.active .inner>*:nth-child(5){transition-delay:.32s}
+
+  @media(max-width:880px){
+    .slide{padding:70px 24px}
+    .cols2,.cols3,.demo-grid,.ba,.timeline{grid-template-columns:1fr!important;gap:18px}
+    .ba .arrow{transform:rotate(90deg);justify-self:center}
+    .dots{display:none}
+    .chan-row{grid-template-columns:30px 1fr;gap:10px}.chan-row .why{grid-column:1/-1}
+    .src{position:static;margin-top:26px}
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="prog"></div>
+<div class="dots" id="dots"></div>
+<div class="counter"><span id="cur">01</span> / 08</div>
+<div class="hint">Scroll &#8595;</div>
+
+<div class="deck" id="deck">
+
+  <!-- 1 TITLE -->
+  <section class="slide s-title dark">
+    <div class="inner">
+      <div class="brandline">
+        <svg viewBox="0 0 32 32" fill="none"><path d="M3 25 L11 11 L16 19 L21 8 L29 25 Z" stroke="var(--gold)" stroke-width="2.2" stroke-linejoin="round"/><circle cx="21" cy="8" r="2.4" fill="var(--gold)"/></svg>
+        <span>AIXEL</span><span class="x">x</span><span>JOMI HOSTEL</span>
+      </div>
+      <span class="eyebrow">Предложение по развитию</span>
+      <h1 class="title">Больше броней. <em>Меньше хаоса.</em></h1>
+      <p class="lede">Как Jomi Hostel может получать больше гостей со всего мира - и управлять всеми бронированиями из одного окна, а не в Excel.</p>
+      <div class="meta"><span>Душанбе, Таджикистан</span><span><b>3</b> направления роста</span><span>Запуск за <b>~1 месяц</b></span></div>
+    </div>
+  </section>
+
+  <!-- 2 WHERE YOU ARE -->
+  <section class="slide bg-cream">
+    <div class="inner">
+      <span class="eyebrow">Где вы сейчас</span>
+      <h2 class="head">Вас уже видно. Но <em>не везде</em>, и всё вручную.</h2>
+      <div class="cols2">
+        <div class="card good">
+          <h3><span class="ic y">&#10003;</span> Уже работает</h3>
+          <ul class="list">
+            <li><span class="ic y">&#10003;</span> Booking.com и Agoda - есть профиль</li>
+            <li><span class="ic y">&#10003;</span> 2ГИС - рейтинг 4.0 из 5</li>
+            <li><span class="ic y">&#10003;</span> Instagram @jomi.hostel</li>
+            <li><span class="ic y">&#10003;</span> Приём оплаты по QR</li>
+          </ul>
+        </div>
+        <div class="card gap">
+          <h3><span class="ic n">!</span> Чего не хватает</h3>
+          <ul class="list">
+            <li><span class="ic n">&#10005;</span> Нет на Hostelworld - главной площадке бэкпекеров</li>
+            <li><span class="ic n">&#10005;</span> Нет на Airbnb - упущен мировой трафик</li>
+            <li><span class="ic n">&#10005;</span> Нет своего сайта и прямых броней</li>
+            <li><span class="ic n">&#10005;</span> Всего 3 отзыва - слабый сигнал доверия</li>
+            <li><span class="ic n">&#10005;</span> Управление в Excel - риск овербукинга</li>
+          </ul>
+        </div>
+      </div>
+      <div class="insight">Проблема не в том, что вас не находят, а в <b>упущенных каналах</b> и <b>ручном управлении</b>. И то, и другое решается.</div>
+    </div>
+    <div class="src">Источники: профили Jomi на Booking.com, Agoda, 2ГИС (4.0/5), Instagram; конкурент Green House Hostel - на Hostelworld, титул "Best Hostel in Tajikistan".</div>
+  </section>
+
+  <!-- 3 PROBLEM -> SOLUTION -->
+  <section class="slide bg-paper">
+    <div class="inner">
+      <span class="eyebrow">План в трёх шагах</span>
+      <h2 class="head">Три проблемы - <em>три решения</em></h2>
+      <div class="cols3">
+        <div class="ps">
+          <div class="n">01</div>
+          <h3>Каналы</h3>
+          <p class="prob">Нет ключевых площадок и прямых броней - весь поток зависит от двух OTA с комиссией 15-25%.</p>
+          <p class="sol"><b>Решение:</b> подключаем Hostelworld и Airbnb, усиливаем Booking/Agoda, настраиваем Google и 2ГИС, добавляем СНГ-каналы.</p>
+        </div>
+        <div class="ps">
+          <div class="n">02</div>
+          <h3>Сайт</h3>
+          <p class="prob">Своего сайта нет. Гость не может забронировать напрямую и без комиссии, нет лица бренда.</p>
+          <p class="sol"><b>Решение:</b> красивый сайт на EN+RU с прямым бронированием в WhatsApp/Telegram. Демо уже готово.</p>
+        </div>
+        <div class="ps">
+          <div class="n">03</div>
+          <h3>Система</h3>
+          <p class="prob">Всё в Excel: койки заполняются вручную, легко продать одно место дважды, нет аналитики.</p>
+          <p class="sol"><b>Решение:</b> готовый channel manager с учётом по койко-местам и авто-синхронизацией всех площадок.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 DEMO -->
+  <section class="slide bg-cream">
+    <div class="inner">
+      <span class="eyebrow">Шаг 2 - уже сделан</span>
+      <h2 class="head">Мы сделали <em>демо вашего сайта</em></h2>
+      <div class="demo-grid">
+        <div class="browser">
+          <div class="bar"><i></i><i></i><i></i><span class="url">jomihostel.tj</span></div>
+          <img src="assets/site-hero.jpg" alt="Демо сайта Jomi Hostel" />
+        </div>
+        <div class="demo-copy">
+          <ul class="feat">
+            <li>Два языка - английский для иностранцев и русский для СНГ</li>
+            <li>Сначала мобильный - 65% трафика в стране со смартфонов</li>
+            <li>Прямое бронирование в WhatsApp и Telegram - без комиссии</li>
+            <li>Галерея, карта, отзывы, типы номеров и цены</li>
+            <li>Открывается мгновенно, можно хостить почти бесплатно</li>
+          </ul>
+          <a class="btn" href="https://aixel-solutions.github.io/jomi-hostel-demo/" target="_blank">Открыть демо вживую &#8594;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 CHANNELS -->
+  <section class="slide bg-pine dark">
+    <div class="inner">
+      <span class="eyebrow">Стратегия каналов</span>
+      <h2 class="head">Куда подключаться - <em>по приоритету</em></h2>
+      <div class="chan">
+        <div class="chan-row"><span class="rank">1</span><b>Hostelworld <span class="tag gap">пробел</span></b><span class="why">Главная площадка бэкпекеров на Памир. Конкуренты там есть, вы - нет. Комиссия ~15%.</span></div>
+        <div class="chan-row"><span class="rank">2</span><b>Airbnb <span class="tag gap">пробел</span></b><span class="why">Мировой охват и аудитория, которой нет на других площадках.</span></div>
+        <div class="chan-row"><span class="rank">3</span><b>Booking + Agoda <span class="tag boost">усилить</span></b><span class="why">Уже есть - наращиваем отзывы, фото и контент, разбираемся с Genius.</span></div>
+        <div class="chan-row"><span class="rank">4</span><b>Google Business + 2ГИС <span class="tag free">бесплатно</span></b><span class="why">Локальная видимость в поиске и на картах, поток на прямой сайт.</span></div>
+        <div class="chan-row"><span class="rank">5</span><b>Островок + Суточно <span class="tag boost">СНГ</span></b><span class="why">Русскоязычные гости круглый год - выплаты в регион работают.</span></div>
+        <div class="chan-row"><span class="rank">6</span><b>Instagram + Telegram <span class="tag free">бесплатно</span></b><span class="why">Возрождаем соцсети и запускаем движок отзывов: с 3 до 30+.</span></div>
+      </div>
+    </div>
+    <div class="src">Источники ресёрча: Hostelworld (Душанбе), Booking.com Partner Help, DataReportal Tajikistan (Instagram 65%, Telegram 47%), Wise (выплаты TJS).</div>
+  </section>
+
+  <!-- 6 SYSTEM -->
+  <section class="slide bg-paper">
+    <div class="inner">
+      <span class="eyebrow">Система бронирования</span>
+      <h2 class="head">От Excel - <em>к одному окну</em></h2>
+      <div class="ba">
+        <div class="box before">
+          <h3>Сейчас: Excel</h3>
+          <ul>
+            <li>Койки заполняются вручную</li>
+            <li>Риск продать место дважды</li>
+            <li>Нет синхронизации с Booking и Agoda</li>
+            <li>Нет отчётов и аналитики</li>
+          </ul>
+        </div>
+        <div class="arrow">&#8594;</div>
+        <div class="box after">
+          <h3>Channel manager</h3>
+          <ul>
+            <li>Учёт по койко-местам в дормах 4-6</li>
+            <li>Авто-синхронизация всех площадок</li>
+            <li>Реестр гостей: паспорт, оплата, даты</li>
+            <li>Отчёты по загрузке и доходу</li>
+          </ul>
+        </div>
+      </div>
+      <p class="tools">Берём проверенное готовое решение, не пишем с нуля: <b>Beds24</b> (от ~$17/мес), <b>Hostel Mate</b> (~$34/мес) или <b>Cloudbeds</b>. Запуск за ~месяц вместо полугода разработки.</p>
+    </div>
+    <div class="src">Источники: Beds24, Hostel Mate, Cloudbeds, RoomRaccoon (поддержка bed-level инвентаря и синхронизации Booking/Airbnb/Hostelworld).</div>
+  </section>
+
+  <!-- 7 PLAN -->
+  <section class="slide bg-pine dark">
+    <div class="inner">
+      <span class="eyebrow">План и сроки</span>
+      <h2 class="head">Запуск за <em>четыре недели</em></h2>
+      <div class="timeline">
+        <div class="tl"><div class="dot">1</div><div class="wk">Неделя 1</div><h3>Фундамент</h3><p>Аудит, оформление Google Business и 2ГИС, фото и тексты, цены.</p></div>
+        <div class="tl"><div class="dot">2</div><div class="wk">Неделя 2</div><h3>Каналы и сайт</h3><p>Публикуем сайт, подключаем Hostelworld и Airbnb, оптимизируем Booking.</p></div>
+        <div class="tl"><div class="dot">3</div><div class="wk">Неделя 3</div><h3>Система</h3><p>Внедряем channel manager, переносим данные из Excel, обучаем команду.</p></div>
+        <div class="tl"><div class="dot">4</div><div class="wk">Неделя 4</div><h3>Рост</h3><p>Движок отзывов, соцсети, Островок/Суточно, тонкая настройка. Запуск.</p></div>
+      </div>
+      <div class="role">
+        <span>AIXEL: настройка и интеграция</span>
+        <span>Перенос из Excel</span>
+        <span>Обучение команды</span>
+        <span>Ведение соцсетей и трафик</span>
+        <span>Поддержка каждый месяц</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 CTA -->
+  <section class="slide bg-clay s-cta dark">
+    <div class="inner">
+      <span class="eyebrow" style="justify-content:center;color:#fff">Готовы начать</span>
+      <h2 class="head" style="margin:0 auto;color:#fff">Давайте приведём в Jomi <em>больше гостей</em></h2>
+      <p class="lede" style="margin:22px auto 0;color:rgba(255,255,255,.92)">Демо-сайт готов, стратегия на руках, система выбрана. Остаётся запустить - и считать брони, а не строки в Excel.</p>
+      <div class="ctas">
+        <a class="btn" href="https://aixel-solutions.github.io/jomi-hostel-demo/" target="_blank">Посмотреть демо-сайт</a>
+        <a class="btn line" href="#" >Обсудить запуск</a>
+      </div>
+      <div class="contact">
+        <a href="#">AIXEL Solutions</a>
+        <a href="#">hello@aixel.solutions</a>
+        <span>Automating Your Business</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+const deck=document.getElementById('deck');
+const slides=[...document.querySelectorAll('.slide')];
+const _qs=new URLSearchParams(location.search);
+if(_qs.has('qa')){
+  const st=document.createElement('style');
+  st.textContent='html,body{height:auto}.deck{height:auto!important;overflow:visible!important;scroll-snap-type:none!important}.slide{min-height:760px!important}.slide .inner>*{opacity:1!important;transform:none!important}';
+  document.head.appendChild(st);
+  slides.forEach(s=>s.classList.add('active'));
+}
+if(_qs.has('pdf')){
+  const st=document.createElement('style');
+  st.textContent='@page{size:1280px 880px;margin:0}'+
+    'html,body{height:auto;background:#fff}'+
+    '.deck{height:auto!important;overflow:visible!important;scroll-snap-type:none!important}'+
+    '.slide{height:880px!important;min-height:880px!important;width:1280px!important;padding:54px 84px!important;break-after:page;page-break-after:always;overflow:hidden}'+
+    '.slide:last-child{break-after:auto;page-break-after:auto}'+
+    '.slide .inner>*{opacity:1!important;transform:none!important}'+
+    '.dots,.progress,.counter,.hint{display:none!important}';
+  document.head.appendChild(st);
+  slides.forEach(s=>s.classList.add('active'));
+}
+const dotsWrap=document.getElementById('dots');
+const prog=document.getElementById('prog');
+const cur=document.getElementById('cur');
+
+slides.forEach((s,i)=>{
+  const b=document.createElement('button');
+  b.setAttribute('aria-label','Slide '+(i+1));
+  b.addEventListener('click',()=>slides[i].scrollIntoView({behavior:'smooth'}));
+  dotsWrap.appendChild(b);
+});
+const dots=[...dotsWrap.children];
+
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      const i=slides.indexOf(e.target);
+      e.target.classList.add('active');
+      dots.forEach((d,j)=>d.classList.toggle('active',j===i));
+      cur.textContent=String(i+1).padStart(2,'0');
+    }
+  });
+},{threshold:.55});
+slides.forEach(s=>io.observe(s));
+
+deck.addEventListener('scroll',()=>{
+  const max=deck.scrollHeight-deck.clientHeight;
+  prog.style.width=(deck.scrollTop/max*100)+'%';
+},{passive:true});
+
+// keyboard nav
+addEventListener('keydown',e=>{
+  const i=slides.findIndex(s=>s.classList.contains('active'));
+  if((e.key==='ArrowDown'||e.key==='PageDown'||e.key===' ')&&i<slides.length-1){e.preventDefault();slides[i+1].scrollIntoView({behavior:'smooth'});}
+  if((e.key==='ArrowUp'||e.key==='PageUp')&&i>0){e.preventDefault();slides[i-1].scrollIntoView({behavior:'smooth'});}
+});
+slides[0].classList.add('active');
+</script>
+</body>
+</html>
